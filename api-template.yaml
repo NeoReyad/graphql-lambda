@@ -1,10 +1,10 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  TestFunction:
+  GraphQL:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: graphql.handler
+      Handler: graphql.graphqlHandler
       Runtime: nodejs4.3
       Events:
         GetRequest:
@@ -17,3 +17,14 @@ Resources:
           Properties:
             Path: /graphql
             Method: post
+  GraphQLInspector:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: graphql.graphiqlHandler
+      Runtime: nodejs4.3
+      Events:
+        GetRequest:
+          Type: Api
+          Properties:
+            Path: /graphiql
+            Method: get

@@ -21,4 +21,5 @@ const myGraphQLSchema = graphqlTools.makeExecutableSchema({
     resolvers: resolver
 });
 
-exports.handler = server.graphqlLambda({ schema: myGraphQLSchema });
+exports.graphqlHandler = server.graphqlLambda({ schema: myGraphQLSchema });
+exports.graphiqlHandler = server.graphiqlLambda({ schema: myGraphQLSchema });

@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-  TestFunction:
+  GraphQL:
     Properties:
-      CodeUri: s3://graphqlservertest/3fe98f8f637e110bb321c76fe14e1bcb
+      CodeUri: s3://graphqlservertest2/58801ee57ac21e032eeafd2c1f50946c
       Events:
         GetRequest:
           Properties:
@@ -14,7 +14,19 @@ Resources:
             Method: post
             Path: /graphql
           Type: Api
-      Handler: graphql.handler
+      Handler: graphql.graphqlHandler
+      Runtime: nodejs4.3
+    Type: AWS::Serverless::Function
+  GraphQLInspector:
+    Properties:
+      CodeUri: s3://graphqlservertest2/58801ee57ac21e032eeafd2c1f50946c
+      Events:
+        GetRequest:
+          Properties:
+            Method: get
+            Path: /graphiql
+          Type: Api
+      Handler: graphql.graphiqlHandler
       Runtime: nodejs4.3
     Type: AWS::Serverless::Function
 Transform: AWS::Serverless-2016-10-31
